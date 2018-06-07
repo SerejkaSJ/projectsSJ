@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Редактирование маршрута</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min_NORM.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/site.css" rel="stylesheet">
+    
+    <!-- DateTimePicker -->
+    <link href="controls/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">О сервисе</a>
+                    </li>
+                    <li>
+                        <a href="#">Возможности</a>
+                    </li>
+                    <li>
+                        <a href="#">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="breadcrumb">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Маршруты</a></li>
+                    <li><a href="#">Планирование</a></li>
+                    <li class="active">Общие сведения</li>
+                </ol>
+                <!--h1>Планирование маршрута
+                    <small>Secondary Text</small>
+                </h1-->
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+            <div class="col-md-5">
+                <a href="#">
+                    <img class="img-responsive" src="http://placehold.it/750x450" alt="">
+                </a>
+            </div>
+            <div class="col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><b>Создание нового маршрута</b></h4>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" autocomplete="off">
+                            <div class="form-group">
+                                <label for="input-route-name" class="col-md-4 control-label">
+                                    Название маршрута
+                                </label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="input-route-name" placeholder="Моя новая поездка..." />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-route-name" class="col-md-4 control-label">
+                                    Дата старта
+                                </label>
+                                <div class="col-md-8">
+                                    <div class="input-group date" id="date-trip-start">
+                                        <input type="text" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-route-name" class="col-md-4 control-label">
+                                    Дата возврата
+                                </label>
+                                <div class="col-md-8">
+                                    <div class="input-group date" id="date-trip-finish">
+                                        <input type="text" class="form-control" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">
+                                    Длительность
+                                </label>
+                                <div class="col-md-8">
+                                    <label class="control-label" id="travel-days">
+                                        
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer text-right">
+                        <button type="button" class="btn btn-primary">Далее >> </button>
+                    </div>
+                </div>           
+            </div>
+        </div>
+        <!-- /.row -->
+        
+        
+        <!--hr-->
+
+        <!-- Pagination ->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li>
+                        <a href="#">&laquo;</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#">4</a>
+                    </li>
+                    <li>
+                        <a href="#">5</a>
+                    </li>
+                    <li>
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!--hr-->
+
+        <!-- Footer ->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+        <!-- -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- DateTimePicker -->
+    <script src="controls/moment/moment-with-locales.min.js"></script>
+    <script src="controls/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    
+    
+    <script>
+        $(function () {
+            // DateTimePicker : date-trip-start
+            $('#date-trip-start').datetimepicker({
+                locale: 'ru',
+                format: 'DD/MM/YYYY',
+            });
+            $('#date-trip-start').on('dp.change', function (e) {
+                $('#date-trip-finish').data("DateTimePicker").minDate(e.date);
+            });
+            // DateTimePicker : date-trip-finish
+            $('#date-trip-finish').datetimepicker({
+                locale: 'ru',
+                format: 'DD/MM/YYYY',
+                useCurrent: false
+            });
+            $('#date-trip-finish').on('dp.change', function (e) {
+                $('#date-trip-start').data("DateTimePicker").maxDate(e.date);
+                
+                var dateStart   = $('#date-trip-start').data("DateTimePicker").date(),
+                    dateFinish  = $('#date-trip-finish').data("DateTimePicker").date();
+                var deltaDays   = (dateFinish - dateStart)/86400000 + 1, 
+                    deltaNights = (dateFinish - dateStart)/86400000;
+                
+                $('#travel-days').html(deltaDays + ' / '  + deltaNights);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

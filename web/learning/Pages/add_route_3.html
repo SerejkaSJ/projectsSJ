@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Редактирование маршрута</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min_NORM.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/todolist.css" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link href="fonts/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- fullCalendar 2.2.5-->
+    <link href="controls/fullcalendar/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+    <link href="controls/fullcalendar/fullcalendar.print.css" rel="stylesheet" type="text/css" media='print' />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+    
+        .external-event {
+            padding: 5px 10px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+            cursor: move;
+        }
+        
+        .external-event:hover {
+            box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bg-aqua {
+            background-color: #00c0ef !important;
+        }
+        
+        .text-white {
+            color: #fff;
+        }
+
+    </style>
+    
+    
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">О сервисе</a>
+                    </li>
+                    <li>
+                        <a href="#">Возможности</a>
+                    </li>
+                    <li>
+                        <a href="#">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="breadcrumb">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Маршруты</a></li>
+                    <li><a href="#">Планирование</a></li>
+                    <li class="active">Расстановка на календаре</li>
+                </ol>
+                <!--h1>Планирование маршрута
+                    <small>Secondary Text</small>
+                </h1-->
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-4">
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="box-title">Города</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div id="external-events">
+                            <div class='external-event bg-aqua text-white' id='2'><img src="images/flags/pl.png">&nbsp;Белосток</div>
+                            <div class='external-event bg-aqua text-white' id='3'><img src="images/flags/pl.png">&nbsp;Гданьск</div>
+                            <div class='external-event bg-aqua text-white' id='4'><img src="images/flags/pl.png">&nbsp;Свебодзин</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="box-title">Стоимость проживания</h4>
+                    </div>
+                    <div class="panel-body">
+                        <i class="fa fa-money"></i> <span class="text" id="price-total">0</span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-8">
+                <div id="calendar"></div>
+            </div>
+        </div>
+        <!-- /.row -->
+        
+        
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <!--script src="js/jquery-sortable.js"></script-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- fullCalendar 2.2.5 -->
+    <script src="controls/moment/moment-with-locales.min.js" type="text/javascript"></script>
+    <script src="controls/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
+    <script src="controls/fullcalendar/lang/ru.js"></script>
+
+    <script>
+      
+      var locations = [
+        // Важно !!!!!
+        // id=0 - начало маршрута !!!!!
+        // id=1 - конец маршрута !!!!!
+        // Шаблон: id, название места, координаты-lat, координаты-lng, имя отеля, url отеля, цена за ночь
+        // [1, 'Гданьск', '54.36667,18.63333', 'Focus hotel Gdansk', 'https://www.booking.com/hotel/pl/focus-gdansk.ru.html?aid=304142;sid=b685d59d8828198d7827e9c5b595ff9a;dcid=5', '50']
+         [2, 'Белосток', '54.36667,18.63333', 'Focus hotel Gdansk', 'https://www.booking.com/hotel/pl/focus-gdansk.ru.html?aid=304142;sid=b685d59d8828198d7827e9c5b595ff9a;dcid=5', '50'],
+         [3, 'Гданьск', '54.36667,18.63333', 'Focus hotel Gdansk', 'https://www.booking.com/hotel/pl/focus-gdansk.ru.html?aid=304142;sid=b685d59d8828198d7827e9c5b595ff9a;dcid=5', '60'],
+         [4, 'Свебодзин', '54.36667,18.63333', 'Focus hotel Gdansk', 'https://www.booking.com/hotel/pl/focus-gdansk.ru.html?aid=304142;sid=b685d59d8828198d7827e9c5b595ff9a;dcid=5', '74'],
+      ];
+      var price_total = 0;
+
+        function init_events(ele) {
+            ele.each(function () {
+
+            // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+            // it doesn't need to have a start or end
+            var eventObject = {
+                title: $.trim($(this).text()), // use the element's text as the event title
+                city_id: $(this).attr('id')
+            };
+
+            // store the Event Object in the DOM element so we can get to it later
+            $(this).data('eventObject', eventObject);
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 1070,
+                revert: true, // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+          });
+        }
+        
+        
+      $(function () {
+
+            /* initialize the external events
+            -----------------------------------------------------------------*/
+            init_events($('#external-events div.external-event'));
+
+            /* initialize the calendar
+            -----------------------------------------------------------------*/
+            //Date for the calendar events (dummy data)
+            var date = new Date();
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear();
+
+            var minDate = new Date(2016, 4, 01, 07, 00, 00, 00);
+            var maxDate = new Date(2016, 4, 20, 0, 0, 0, 0);
+
+            $('#calendar').fullCalendar({
+                lang: 'ru',
+                header: {
+                    left: 'prev next today',
+                    center: 'title',
+                    //right: 'month,agendaWeek,agendaDay'
+                    right: ''
+                },
+                firstDay: 1,  //Начинать неделю с понедельника (0 - вс)
+                editable: true,
+                disableResizing: true,
+                droppable: true, // this allows things to be dropped onto the calendar !!!
+                drop: function (date, allDay) { // this function is called when something is dropped
+                    if (date > maxDate || date < minDate) {
+                        alert('Низззя сюда дропать!\nДропай только на открытые даты!');
+                        return;
+                    }
+
+                    var price = parseInt(locations[$(this).attr('id') - 2][5]);
+                    price_total = price_total + price;
+                    $('#price-total').text(price_total);
+                    // retrieve the dropped element's stored Event Object
+                    var originalEventObject = $(this).data('eventObject');
+
+                    // we need to copy it, so that multiple events don't have a reference to the same object
+                    var copiedEventObject = $.extend({}, originalEventObject);
+
+                    // assign it the date that was reported
+                    copiedEventObject.start = date;
+                    copiedEventObject.allDay = allDay;
+                    copiedEventObject.backgroundColor = $(this).css("background-color");
+                    copiedEventObject.borderColor = $(this).css("border-color");
+
+                    // render the event on the calendar
+                    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+                },
+                eventClick: function(calEvent, jsEvent, view) {
+                    //alert(calEvent._id);
+                    var r = confirm("Delete " + calEvent.title);
+                    if (r === true) {
+                        price_total = price_total - parseInt(locations[calEvent.city_id - 2][5]);
+                        $('#price-total').text(price_total);
+
+                        $('#calendar').fullCalendar('removeEvents', calEvent._id);
+                    }
+                },
+                dayRender: function(date, cell) {
+                    if (date > maxDate || date < minDate){
+                        $(cell).addClass('disabled');
+                        cell.css("background-color", "#aaa");
+                    } else {
+                        cell.css("background-color", "#fff");
+                    }
+                }
+            });
+          
+            var h = $(window).height();
+            //$("#calendar").css('height', h < 600 ? 460 : h - 140);
+            $('#calendar').fullCalendar('option', 'height', h < 600 ? 460 : h - 140);
+
+            $("#add-new-event").click(function (e) {
+                e.preventDefault();
+                //Get value and make sure it is not null
+                var val = $("#new-event").val();
+                if (val.length == 0)
+                    return;
+
+                //Create events
+                var event = $("<div />");
+                event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
+                event.html(val);
+                $('#external-events').prepend(event);
+
+                //Add draggable funtionality
+                init_events(event);
+
+                //Remove event from text input
+                $("#new-event").val("");
+            });
+        });
+   </script>
+    
+     
+    
+</body>
+
+</html>

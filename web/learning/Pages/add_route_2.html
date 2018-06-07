@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Редактирование маршрута</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min_NORM.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/site.css" rel="stylesheet">
+    <link href="css/todolist.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="fonts/font-awesome-4.6.1/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Start Bootstrap</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">О сервисе</a>
+                    </li>
+                    <li>
+                        <a href="#">Возможности</a>
+                    </li>
+                    <li>
+                        <a href="#">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="breadcrumb">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Маршруты</a></li>
+                    <li><a href="#">Планирование</a></li>
+                    <li class="active">Опорные точки маршрута</li>
+                </ol>
+                <!--h1>Планирование маршрута
+                    <small>Secondary Text</small>
+                </h1-->
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-md-4">
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-flag"></i> Начало и конец маршрута</div>
+                    <div class="panel-body">
+                        <div class="form-group" id="place-start">
+                            <label>Начальная точка путешествия</label>
+                            <input type="text" id="city-input-start" class="form-control" placeholder="Название города" />
+                        </div>
+                        <div class="form-group" id="place-finish">
+                            <label>Конечная точка путешествия</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <input type="checkbox" id="city-finish-enabled" title="Начальная и конечная точки маршрута отличаются">
+                                </span>
+                                <input input type="text" id="city-input-finish" class="form-control" placeholder="Название города" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><i class="fa fa-map-marker"></i> Точки маршрута</div>
+                    <div class="panel-body">
+                        <ul class="todo-list" id="waypoints-list">
+                            <!--
+                            <li class="sortable-item" id="2">
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <span class="text"> Пункт 1</span>
+                                </span>
+                                
+                                <div class="tools">
+                                    <i class="fa fa-edit edit-item"></i>
+                                    <i class="fa fa-trash-o delete-item"></i>
+                                </div>
+                            </li>
+                            <li class="sortable-item" id="3">
+                                <span class="handle">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <i class="fa fa-ellipsis-v"></i>
+                                    <span class="text"> Пункт 2</span>
+                                </span>
+                                
+                                <div class="tools">
+                                    <i class="fa fa-edit edit-item"></i>
+                                    <i class="fa fa-trash-o delete-item"></i>
+                                </div>
+                            </li>
+                            -->                            
+                        </ul>
+                    </div>
+                    <div class="panel-footer text-right">
+                        <button class="btn btn-default" id="btn-fit-waypoints" ><i class="fa fa-arrows"></i> Уместить все точки</button>
+                        <button class="btn btn-default" id="btn-add-waypoint" ><i class="fa fa-plus"></i> Добавить</button>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-pie-chart text-blue"></i>
+                        <span class="block-title">Статистика</span>
+                    </div>
+                    <div class="panel-body clearfix">
+                        <dl class="dl-horizontal">
+                            <dt>Длина маршрута</dt>
+                            <dd><span id="distance-value">0 км</span></dd>
+                            <dt>Расход бензина</dt>
+                            <dd><span id="fuel-value">0 л</span></dd>
+                            <dt>Стоимость проезда</dt>
+                            <dd><span id="fuel-price">0 руб</span></dd>
+                        </dl>
+                    </div>
+                    <div class="panel-footer clearfix no-border">
+                        <button class="btn btn-default pull-right btn-flat" id="calc-route" ><i class="fa fa-calculator"></i> Рассчитать</button>
+                    </div>
+              </div>
+
+              <button class="btn btn-default pull-right btn-flat" id="next-step" ><i class="fa fa-arrow-right"></i> Перейти к следующему этапу</button>
+                
+                
+            </div>
+            <div class="col-md-8">
+                <div class="box box-solid">
+                    <div id="map-container" class="google-map-canvas" style="padding: 5px; width:100%;"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+        
+        
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <!--script src="js/jquery-sortable.js"></script-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Google maps -->
+    <script src="http://maps.google.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
+    <script src="js/maps.google.js"></script>
+    
+    
+    <script>
+        $(function () {
+            var h = $(window).height();
+            $("#map-container").css('height', h < 600 ? 460 : h - 140);
+
+            //
+            // Работаем с листом TODO
+            //
+            $("#waypoints-list").sortable({
+                placeholder: "sort-highlight",
+                handle: ".handle",
+                forcePlaceholderSize: true,
+                zIndex: 999999,
+                stop: function(event, ui) {
+                    ordered_list = $("#waypoints-list").sortable("toArray");
+                    renew_map_markers();
+                }
+            });
+            $('#waypoints-list').on('click', '.edit-item',  function() {
+                var id = $(this).parent().parent().attr('id');
+                alert('Edit clicked!\nID = "' + id + '"');
+            });
+            $('#waypoints-list').on('click', '.delete-item',  function() {
+                var id = $(this).parent().parent().attr('id');
+                alert('Delete clicked!\nID = "' + id + '"');
+                /*
+                var id = $(this).parent().parent().attr('id');
+
+                for (i = 2; i < locations.length; i++) {
+                    if(locations[i][0] == id) {
+                        locations.splice(i, 1);
+                        break;
+                    }
+                }
+
+                for(i = 2; i < locations.length; i++) {
+                    if(locations[i][0] > id)
+                        locations[i][0]--;
+                }
+
+                $("#waypoints-list li").each(function(n) {
+                    if($(this).attr('id') > id)
+                        $(this).attr("id",  $(this).attr('id') - 1);
+                });
+                current_id--;
+
+                $(this).parent().parent().remove();
+                ordered_list = $("#waypoints-list").sortable("toArray");
+                renew_map_markers();
+                //*/
+            });
+
+            $('#city-finish-enabled').click(function() {
+                $("#city-input-finish").prop('disabled', !$(this).is(':checked'));
+            });
+            
+            $("#dlg-add-waypoint").draggable({
+                handle: ".modal-header"
+            });            
+            
+            $('#btn-add-waypoint').on('click', function(evt) {
+                evt.stopPropagation();
+                //*
+                if(locations.length < 2) {
+                    alert('Сначала нужно задать начальную и конечную точку маршрута');
+                    $( '#city-input-start' ).focus();
+                    return;
+                }
+                //*/
+                
+                clear_modal_fileds();
+                $('#dlg-add-waypoint').modal('show');
+            });
+            
+            $('#btn-fit-waypoints').click(function() {
+                alert('Yo!');
+                fit_map_tp_markers();
+            });
+
+            $('#dlg-btn-add-waypoint').on('click', function() {
+
+                if($('#city-location-lat').text() == '') {
+                    alert('Координаты города не заданы!');
+                    return;
+                }
+
+                var country_name = $('#city-input-intermediate').val().split(",")[$('#city-input-intermediate').val().split(",").length - 1].replace(/ /g,'');
+                var country_id = GetCountryID(country_name);
+                var itemText = '\
+                            <li class="sortable-item" id="' + current_id + '"> \
+                                <span class="handle"> \
+                                    <i class="fa fa-ellipsis-v"></i> \
+                                    <i class="fa fa-ellipsis-v"></i> \
+                                    <!--span class="text">' + $('#city-input-intermediate').val().split(",")[0] + ' : {' + current_id + '} : <img src="images/flags/' + country_id + '.png"> </span--> \
+                                    <span class="text">' + $('#city-input-intermediate').val().split(",")[0] + ' <img src="images/flags/' + country_id + '.png"> </span> \
+                                </span> \
+                                <div class="tools"> \
+                                    <i class="fa fa-edit edit-item"></i> \
+                                    <i class="fa fa-trash-o delete-item"></i> \
+                                </div> \
+                            </li>\
+                                ';
+
+                locations.push([current_id, $('#city-input-intermediate').val(), country_id, $('#city-location-lat').text(), $('#city-location-lng').text(), $('#hotel-name').text(), $('#url-input').val(), $('#money-input').val()]);
+                $('#waypoints-list').append(itemText);
+
+                $('#dlg-add-waypoint.in').modal('hide');
+                current_id++;
+
+                ordered_list = $("#waypoints-list").sortable("toArray");
+
+                renew_map_markers();
+        
+            });
+        
+        });
+
+        $(window).resize( function() {
+            var h = $( window ).height();
+            $( '#map-container' ).css( 'height', h < 600 ? 460 : h - 140 );
+        });
+        
+        google.maps.event.addDomListener(window, 'load', init_map_and_input_controls);
+        
+    </script>
+    
+    <script>
+        function clear_modal_fileds() {
+            // Поля ввода
+            $('#city-input-intermediate').val('');
+            $('#url-input').val('');
+            $('#money-input').val('');
+            // Объекты DIV и другие текстовые элементы
+            $('#city-location-lat').html('');
+            $('#city-location-lng').html('');
+            $('#hotel-name').html('Название отеля не определено');
+            $('#hotel-found').html('<i class="fa fa-question text-muted"></i>');
+        }    
+    </script>
+
+    <!--  ########################
+          НАЧАЛО : Модальный диалог добавления точки маршрута
+          ######################## -->
+    <div class="modal fade modal-primary" id="dlg-add-waypoint" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><i class="fa fa-map-marker"></i> Добавление точки маршрута</h4>
+                </div>
+                 <div class="modal-body">
+
+                    <div class="box box-solid">
+                        <div class="box-body">
+                            <dl class="dl-horizontal">
+                                <dt>Населённый пункт</dt>
+                                <dd>
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-globe"></i></span>
+                                        <input id="city-input-intermediate" type="text" class="form-control" placeholder="Название города" aria-describedby="sizing-addon3">
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                     </div>
+
+                     <hr />
+
+                     <div class="box">
+                         <div class="box-body">
+                             <dl class="dl-horizontal">
+                                 <dt>URL отеля</dt>
+                                 <dd>
+                                     <div class="input-group input-group">
+                                         <span class="input-group-addon" id="hotel-found"><i class="fa fa-question"></i></span>
+                                         <input id="url-input" type="text" class="form-control" placeholder="http://">
+                                         <span class="input-group-btn">
+                                             <button class="btn btn-info btn-flat" type="button" id="hotel-search"><i class="fa fa-search"></i></button>
+                                         </span>
+                                     </div>
+                                 </dd>
+                                 <dt>Отель</dt>
+                                 <dd><div id="hotel-name">Название отеля не определено</div></dd>
+                                 <hr />
+                                 <dt>Стоимость за ночь</dt>
+                                 <dd>
+                                     <div class="input-group">
+                                         <input type="text" class="form-control" placeholder="50" aria-describedby="sizing-addon3" id="money-input">
+                                         <span class="input-group-addon" id="sizing-addon3"><i class="fa fa-eur"></i></span>
+                                     </div>
+                                 </dd>
+                             </dl>
+                         </div>
+                    </div>
+
+                    <div id="city-location-lat" ></div>
+                    <div id="city-location-lng" ></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" id="dlg-btn-add-waypoint">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  ########################
+          КОНЕЦ : Модальный диалог добавления точки маршрута
+          ######################## -->        
+     
+    
+</body>
+
+</html>
