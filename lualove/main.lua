@@ -3,7 +3,7 @@ local apple, snake, direction, width, height, delay
 function love.load()
 	width = love.graphics.getWidth() / 10			
 	height = love.graphics.getHeight() /10			
-	
+	--
 	apple = { x = math.random(width);				
 			  y = math.random(height); } 			
 	snake = { } 		
