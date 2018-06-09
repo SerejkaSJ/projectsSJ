@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>lesson1</title>
+</head>
+<body>
+<h1>Статьи</h1>
+<ul>
+    <li><a href="./article.html"> Статьи</a></li>
+    <li><a href="./catalog.html">Каталог</a></li>
+    <li><a href="./images.html">Галерея изображений</a></li>
+    <li><a href="./registration.html"><b>Регистрация</b></a></li>
+    <li><a href="./contatcs.html">Контакты</a></li>
+</ul>
+<h1>Форма регистрации</h1>
+<form>
+        <p><label>Фамилия: <input type="text" name="surname"></label></p>
+        <p><label>Имя: <input type="text" name="firstname"></label></p>
+        <p><label>Отчество: <input type="text" name="midlname"></label></p>
+        <p><label>Фото: <input type="file" name="image"></label></p>
+        <p><label>E-mail: <input type="email" name="email"></label></p>
+        <p><label>Login: <input type="login" name="login"></label></p>
+        <p><label>Password: <input type="password" name="pwd"></label></p>
+        <p><label>Web-site: <input type="url" name="site" value="http://"></label></p>
+        <p><label>Ваш пол: <select name = "pol">
+            <option>Мужчина</option>
+            <option selected>Женщина</option>
+            </select>
+        </label></p>
+        <p><label>Выберите дату: <input type="date" name="calendar"></label></p>
+        <p>
+            <label>Блюда какой кухни вы предпочитаете?<br/></label>
+            <label><input type="checkbox" name="ez">Русской<br/></label>
+            <label><input type="checkbox" name="hr">Итальянской<br/></label>
+            <label><input type="checkbox" name="sv">Грузинской<br/></label>
+        </p>
+        <p> 
+            <label><input type = "radio" name = "dish" values = "russian">Русской<br/></label>
+            <label><input type = "radio" name = "dish" values = "italian">Итальянской<br/></label>
+            <label><input type = "radio" name = "dish" values = "gruzian">Грузинской<br/></label>
+        </p>
+        <p><textarea name="text" cols="30" rows="6" id="text"> Напишите, что нибудь...</textarea></p>
+     
+        <p> 
+            <input type="submit" name="submit" value="Отправить">
+            <input type="reset" name="reset" value="Очистить"> 
+        </p>
+        
+
+
+</form>
+
+
+<a href="../index.html">На главную</a>
+<footer> &copy; by SJ </footer>
+</body>
+</html>

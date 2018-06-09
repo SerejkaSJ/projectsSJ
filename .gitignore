@@ -2169,3 +2169,6 @@ web/learning/Pages/fonts/ionicons-2.0.1/src/plane.svg
 web/learning/Pages/fonts/ionicons-2.0.1/src/pizza.svg
 web/learning/Pages/fonts/ionicons-2.0.1/src/pinpoint.svg
 web/learning/Pages/fonts/ionicons-2.0.1/src/pin.svg
+Projects/viewer/viewer/x64/
+*.png
+*.jpg
