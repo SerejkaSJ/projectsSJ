@@ -1,0 +1,42 @@
+body{
+    background-image:url(../images/science-fiction.jpg);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+ul a{
+    color: red;
+    font-family: 'Courier New', Courier, monospace;
+    font: italic;
+    background: black;
+}
+h1.article a{
+    color:green;
+    text-decoration: none;
+    font-family:  Georgia, Times, 'Times New Roman', serif;
+    font-style: initial;
+    font-size: 110%;
+    border-bottom: 20% double red;
+}
+p.art{
+    background: cornflowerblue;
+}
+h4 a:hover{
+    color:green;
+    text-decoration: none;
+}
+p a{
+    color:firebrick; 
+    text-decoration: none;
+}
+h1.one{
+    background-origin: padding-box;
+    text-align: center;
+}
+p.one::first-letter{
+      color: black;
+}
+p.one{
+    text-indent: 2em;
+    color: lightcoral;
+}

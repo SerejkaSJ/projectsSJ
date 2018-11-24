@@ -24,13 +24,14 @@ class Painter : public QWidget
 	QWidget * mParent;
 public:
 	Painter(QWidget * parent = NULL);
-	//QPainter *paint = NULL;
+	//QPainter *paint;
 	void init();
 	bool rep = false;
 	void RenderScheme();
-
+	//void paintTransistorN(QPainter *paint, int x, int y);
 public slots:
 	void paintEvent(QPaintEvent *evt);
+	
 };
 
 

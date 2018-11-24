@@ -25,8 +25,8 @@ void myWindow::initViewWidget() {
 	widView = new QTabWidget(this);
 	widView->setTabsClosable(1);
 	widView->setMovable(1);	
-	pic = new Painter(this);
-	widView->addTab(pic, "(untitled)");
+	//pic = new Painter(this);
+	//widView->addTab(pic, "(untitled)");
 	//widView->removeTab(0);
 	connect(widView, SIGNAL(tabCloseRequested(int)), SLOT(slotCloseTab(int)));
 
@@ -84,31 +84,35 @@ void myWindow::initActions()
 
 	actRender = new QAction("Render", this);
 	//actAbout->setIcon(QPixmap("Resources/about.png"));
-
+	connect(actOpen, SIGNAL(triggered()), SLOT(slotOpen()));
+	connect(actRender, SIGNAL(triggered()), SLOT(slotRender()));
 }
 void myWindow::initMenuBar()
 {
 	menuFile = new QMenu("File");
-	menuEdit = new QMenu("Edit");
 	menuOptions = new QMenu("Options");
-	menuHelp = new QMenu("Help");
+	/*menuEdit = new QMenu("Edit");
 	
-
+	menuHelp = new QMenu("Help");
+	menuView = new QMenu("View");
+	*/
 
 	menuFile->addAction(actOpen);
 	menuFile->addAction(actSave);
 	menuFile->addAction(actQuit);
 	menuFile->addAction(actRender);
 	
+	menuOptions->addAction(actView);
 
-	connect(actOpen, SIGNAL(triggered()), SLOT(slotOpen()));
-	connect(actRender, SIGNAL(triggered()), SLOT(slotRender()));
-
-	menuHelp->addAction(actAbout);
+	//connect(actOpen, SIGNAL(triggered()), SLOT(slotOpen()));
+	//connect(actRender, SIGNAL(triggered()), SLOT(slotRender()));
+	
+	//menuHelp->addAction(actAbout);
 	menuBar()->addMenu(menuFile);
-	menuBar()->addMenu(menuEdit);
+	//menuBar()->addMenu(menuEdit);
 	menuBar()->addMenu(menuOptions);
-	menuBar()->addMenu(menuHelp);
+	//menuBar()->addMenu(menuHelp);
+	
 	
 }
 void myWindow::initToolBar()
@@ -157,6 +161,8 @@ void myWindow::slotOpen()
 
 	locationGate();
 	cout << "viewer " << gates.size() << endl;
+	Painter *pic = new Painter(this);
+	widView->addTab(pic, "transistor");
 	pic->RenderScheme();
 }
 
@@ -164,7 +170,7 @@ void myWindow::slotRender()
 {	
 	cout<<"render"<<endl;
 	qDebug() << "render";
-	test = new Painter(this);
+	Painter *test = new Painter(this);
 	widView->addTab(test, "transistor");
 
 }

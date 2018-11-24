@@ -55,35 +55,34 @@ public:
 	Painter *painter;
 	QDockWidget*	fileListDock;
 	ListElement *listElement;
-	//Painter *painter;
 
-	Painter* pic;
-	Painter* test;
 	int x_cord = 425, y_cord = 250;
 	int side = 40;
+	bool logicView = true;
+	bool transistorView = false;
 	QDockWidget*	fileCodeDock;
 	QTabWidget*		widView;
 	QTabWidget*		widCode;
 	vector<Gate*> gates;
 	CodeEditor* editor;
-	//QPlainTextEdit* editor;
 private:
 
 	vector<Transistor*> transistors;
-	//vector<Gate*> gates;
 	vector<Net*> nets;
 	QAction* actQuit;
 	QAction* actOpen;
 	QAction* actSave;
 	QAction* actAbout;
 	QAction* actRender;
+	QAction* actView;
 	QMenu* menuFile;
 	QMenu* menuEdit;
 	QMenu* menuOptions;
 	QMenu* menuHelp;
+	QMenu* menuView;
 	QToolBar* toolbar;
 	QStatusBar* status;
-	//QMenuBar* menuBar;
+	
 	//////////////////
 	void initActions();
 	void initMenuBar();
@@ -112,10 +111,3 @@ public slots:
 
 };
 #endif
-/*
-	1. Добавить вывод в луа состав и связать с классами, добавть в вектор транзисторгейт. +
-	2. Добавить ин/аут в класс гейта.
-	3.  Расположенрие
-
-
-*/

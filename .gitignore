@@ -2172,3 +2172,12 @@ web/learning/Pages/fonts/ionicons-2.0.1/src/pin.svg
 Projects/viewer/viewer/x64/
 *.png
 *.jpg
+Projects/viewer/x64/Debug/Qt5Core.dll
+Projects/viewer/x64/Debug/Qt5SerialPortd.dll
+Projects/viewer/x64/Debug/Qt5SerialPort.dll
+Projects/viewer/x64/Debug/Qt5Guid.dll
+Projects/viewer/x64/Debug/Qt5Gui.dll
+Projects/viewer/x64/Debug/Qt5Cored.dll
+Projects/viewer/x64/Debug/lua53.dll
+Projects/viewer/x64/Debug/Qt5Widgetsd.dll
+Projects/viewer/x64/Debug/Qt5Widgets.dll
