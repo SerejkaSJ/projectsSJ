@@ -23,9 +23,11 @@ function elements(pathFile)
 	Elements.invertors   = InvertorTable
 	Elements.nand2 		 = NAND2Table
 	Elements.nor2 		 = NOR2Table
+	print("aaaaa "..NAND2Count)
 	-- for i ,val in pairs(Elements) do
 		-- print(i)
 	-- end
+	--error()
 	return Elements
 end
 
@@ -48,7 +50,7 @@ print("in lua: FindTransistor()"..pathFile)
 	local Transistor={}
 	for line in io.lines(pathFile) do
 		local tab = {}
-		if line:match('^M%d+') then
+		if line:match('^M.-%d+') then
 			local str = string.split(line," ")
 			tab.name 	  = str[1]
 			tab.drain 	  = str[2]
@@ -59,12 +61,20 @@ print("in lua: FindTransistor()"..pathFile)
 			table.insert(Transistor,tab)
 		end
 	end
+	print(#Transistor)
 	return Transistor, #Transistor
 end
 
 function findInvertor(Table)
-print("in lua: FindInventor()")
+print("in lua: FindInventor(!)")
 	local Invertor = {}
+	for i, tab in ipairs(Table) do
+		print(i)
+		for name, val in pairs(tab) do
+			print(name.." : "..val)
+		end
+	
+	end
 	for i,ver in ipairs(Table) do
 		for j, val in pairs(Table) do
 			repeat
@@ -86,6 +96,7 @@ print("in lua: FindInventor()")
 			until true
 		end
 	end
+	print(#Invertor)
 		return Invertor, #Invertor 
 end
 

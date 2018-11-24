@@ -14,7 +14,16 @@
 
 //QT_USE_NAMESPACE
 
+
+
 int main(int argc, char* argv[]) {
+	QStringList p = QCoreApplication::libraryPaths();
+	p.append(".");
+	p.append("platforms");
+
+	QCoreApplication::setLibraryPaths(p);
+
+
 	QApplication app(argc, argv);
 	myWindow *window = new myWindow();
 	window->resize(700, 600);//700/300

@@ -392,10 +392,13 @@ vector<int> myWindow::FindNetsElement(vector<int>  chekLevel) {
 	vector<int> level;
 	for (int k = 0; k < chekLevel.size(); k++) {
 		for (int i = 0; i < gates.size(); i++) {
+			if (gates[i]->location.pos != -1)
+				continue;
 			for (int j = 0; j < gates[chekLevel[k]]->pinsIn.size(); j++) {
 				for (int n = 0; n < gates[i]->pinsOut.size(); n++) {
 					if (gates[chekLevel[k]]->pinsIn[j] == gates[i]->pinsOut[n]) {
 						level.push_back(i);
+						gates[i]->location.pos = chekLevel.size();
 					}
 				}
 			}
@@ -430,10 +433,10 @@ vector<int> myWindow::FindOutElement(){
 
 	return outIndex;
 }
-
 /*
-пќ∆ƒ√ќ“ќ¬ ј	заданий дл€ лаб работ по курсу "л»√¬»“ —–≈ƒ—“¬ј ѕ–ќ≈ “»–ќ¬јЌ»я"
-	дл€ групп экт 44,46
-
+1. убрать схему с size
+2. добавить в net вектор подсоединенных элементов
+3. исход€ из п.2 сделать нормально расположение
+4. написать тест
 
 */

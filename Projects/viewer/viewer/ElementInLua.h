@@ -22,7 +22,7 @@ struct  Location
 {
 	double x;
 	double y;
-	int pos;
+	int pos = -1;
 };
 
 

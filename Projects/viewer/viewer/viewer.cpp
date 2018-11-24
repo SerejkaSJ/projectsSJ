@@ -84,34 +84,34 @@ void myWindow::initActions()
 
 	actRender = new QAction("Render", this);
 	//actAbout->setIcon(QPixmap("Resources/about.png"));
-	connect(actOpen, SIGNAL(triggered()), SLOT(slotOpen()));
-	connect(actRender, SIGNAL(triggered()), SLOT(slotRender()));
+	//connect(actOpen, SIGNAL(triggered()), SLOT(slotOpen()));
+	//connect(actRender, SIGNAL(triggered()), SLOT(slotRender()));
 }
 void myWindow::initMenuBar()
 {
 	menuFile = new QMenu("File");
 	menuOptions = new QMenu("Options");
-	/*menuEdit = new QMenu("Edit");
+	menuEdit = new QMenu("Edit");
 	
 	menuHelp = new QMenu("Help");
 	menuView = new QMenu("View");
-	*/
+
 
 	menuFile->addAction(actOpen);
 	menuFile->addAction(actSave);
 	menuFile->addAction(actQuit);
 	menuFile->addAction(actRender);
 	
-	menuOptions->addAction(actView);
+	//menuOptions->addAction(actView);
 
-	//connect(actOpen, SIGNAL(triggered()), SLOT(slotOpen()));
-	//connect(actRender, SIGNAL(triggered()), SLOT(slotRender()));
+	connect(actOpen, SIGNAL(triggered()), SLOT(slotOpen()));
+	connect(actRender, SIGNAL(triggered()), SLOT(slotRender()));
 	
-	//menuHelp->addAction(actAbout);
+	menuHelp->addAction(actAbout);
 	menuBar()->addMenu(menuFile);
-	//menuBar()->addMenu(menuEdit);
+	menuBar()->addMenu(menuEdit);
 	menuBar()->addMenu(menuOptions);
-	//menuBar()->addMenu(menuHelp);
+	menuBar()->addMenu(menuHelp);
 	
 	
 }
@@ -158,9 +158,9 @@ void myWindow::slotOpen()
 	widCode->addTab(editor, name);
 
 	statusBar()->showMessage(QString("File opened: %1").arg(editor->fileName), 3000);
-
-	locationGate();
 	cout << "viewer " << gates.size() << endl;
+	locationGate();
+	
 	Painter *pic = new Painter(this);
 	widView->addTab(pic, "transistor");
 	pic->RenderScheme();
