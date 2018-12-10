@@ -101,8 +101,9 @@ protected:
 	int ElementInLua(string pathFile);
 	int locationGate();
 	vector<int> FindOutElement();
-	vector<int> FindNetsElement(vector<int>  chekLevel);
+	vector<int> FindNetsElement(vector<int>  chekLevel, int &numOfMinusOnes);
 	void scaleElements(vector<vector<int>>  levels);
+	void verticalLayout(vector<vector<int>>  levels);
 public slots:
 	void slotOpen();
 	void slotRender();

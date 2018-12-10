@@ -95,7 +95,7 @@ int myWindow::ElementInLua(string pathFile)
 {
 	lua_State* L = luaL_newstate();
 	luaL_openlibs(L);
-	luaL_dofile(L, "resolver.lua");
+	luaL_dofile(L, "resolver2.lua");
 	luaL_openlibs(L);
 	lua_pcall(L, 0, 0, 0);
 
@@ -128,6 +128,7 @@ int myWindow::ElementInLua(string pathFile)
 		int count_inv = invertors.length();
 		cout << "Invertors: " << count_inv << endl;
 		for (int i = 1; i <= count_inv; i++) {
+			if (invertors[i].isNil()) continue;
 			LuaRef current = invertors[i];
 			LuaRef items = current["items"];
 			string name = current["name"].cast<string>();
@@ -145,6 +146,7 @@ int myWindow::ElementInLua(string pathFile)
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == in) {
 					gate->pinsIn[0] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsIn[0] == NULL) {
@@ -152,10 +154,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = in;
 				nets.push_back(net);
 				gate->pinsIn[0] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == out) {
 					gate->pinsOut[0] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsOut[0] == NULL) {
@@ -163,10 +167,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = out;
 				nets.push_back(net);
 				gate->pinsOut[0] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == vss) {
 					gate->vss = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->vss == NULL) {
@@ -174,10 +180,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = vss;
 				nets.push_back(net);
 				gate->vss = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == vdd) {
 					gate->vdd = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->vdd == NULL) {
@@ -185,6 +193,7 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = vdd;
 				nets.push_back(net);
 				gate->vdd = net;
+				nets[i]->connection.push_back(gate);
 			}
 		}
 	}
@@ -210,6 +219,7 @@ int myWindow::ElementInLua(string pathFile)
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == inA) {
 					gate->pinsIn[0] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsIn[0] == NULL) {
@@ -217,10 +227,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = inA;
 				nets.push_back(net);
 				gate->pinsIn[0] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == inB) {
 					gate->pinsIn[1] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsIn[1] == NULL) {
@@ -228,10 +240,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = inB;
 				nets.push_back(net);
 				gate->pinsIn[1] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == out) {
 					gate->pinsOut[0] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsOut[0] == NULL) {
@@ -239,10 +253,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = out;
 				nets.push_back(net);
 				gate->pinsOut[0] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == vss) {
 					gate->vss = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->vss == NULL) {
@@ -250,10 +266,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = vss;
 				nets.push_back(net);
 				gate->vss = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == vdd) {
 					gate->vdd = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->vdd == NULL) {
@@ -261,6 +279,7 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = vdd;
 				nets.push_back(net);
 				gate->vdd = net;
+				nets[i]->connection.push_back(gate);
 			}
 		}
 	}
@@ -286,6 +305,7 @@ int myWindow::ElementInLua(string pathFile)
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == inA) {
 					gate->pinsIn[0] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsIn[0] == NULL) {
@@ -293,10 +313,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = inA;
 				nets.push_back(net);
 				gate->pinsIn[0] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == inB) {
 					gate->pinsIn[1] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsIn[1] == NULL) {
@@ -304,10 +326,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = inB;
 				nets.push_back(net);
 				gate->pinsIn[1] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == out) {
 					gate->pinsOut[0] = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->pinsOut[0] == NULL) {
@@ -315,10 +339,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = out;
 				nets.push_back(net);
 				gate->pinsOut[0] = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == vss) {
 					gate->vss = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->vss == NULL) {
@@ -326,10 +352,12 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = vss;
 				nets.push_back(net);
 				gate->vss = net;
+				nets[i]->connection.push_back(gate);
 			}
 			for (int i = 0; i < nets.size(); i++) {
 				if (nets[i]->name == vdd) {
 					gate->vdd = nets[i];
+					nets[i]->connection.push_back(gate);
 				}
 			}
 			if (gate->vdd == NULL) {
@@ -337,6 +365,7 @@ int myWindow::ElementInLua(string pathFile)
 				net->name = vdd;
 				nets.push_back(net);
 				gate->vdd = net;
+				nets[i]->connection.push_back(gate);
 			}
 		}
 	}
@@ -345,13 +374,25 @@ int myWindow::ElementInLua(string pathFile)
 }
 
 int myWindow::locationGate() {
+	int numOfMinusOnes = gates.size();
 	vector<vector<int>> levels;
 	int pos = -1;
 	vector<int> out = FindOutElement();
-	for (int j = 0; j < out.size(); j++) {
-		cout << "OUT   "<<out[j] << " ";
+	for (int i = 0; i < out.size(); i++) {
+		gates[out[i]]->location.pos_v = i;
 	}
 	levels.push_back(out);
+	numOfMinusOnes = numOfMinusOnes - out.size();
+
+	while (1) {
+		if (numOfMinusOnes == 0) break;
+		levels.push_back(FindNetsElement(levels[levels.size() - 1], numOfMinusOnes));
+
+	}
+	verticalLayout(levels);
+	scaleElements(levels);
+	return 0;
+	/*
 	while (1) {
 		int size = 0;
 		for (int i = 0; i < levels.size(); i++) {
@@ -370,13 +411,19 @@ int myWindow::locationGate() {
 		cout << endl;
 	}
 	scaleElements(levels);
-	return 0;
+	return 0;*/
 }
 
 
+void myWindow::verticalLayout(vector<vector<int>>  levels) {
+	for (int i = 1; i < levels.size(); i++) {
+		for (int j = 0; j < levels[i].size(); j++) {
+		//	gates[levels[i][j]]->location
+		}
+	}
 
+}
 void myWindow::scaleElements(vector<vector<int>>  levels) {
-	int max = 0;
 	for (int i = 0; i < levels.size(); i++) {
 		int size1 = levels[i].size();
 		for (int j = 0; j < levels[i].size(); j++) {
@@ -387,25 +434,67 @@ void myWindow::scaleElements(vector<vector<int>>  levels) {
 	}
 	
 }
-vector<int> myWindow::FindNetsElement(vector<int>  chekLevel) {
-	
+vector<int> myWindow::FindNetsElement(vector<int>  chekLevel, int &numOfMinusOnes) {
+	int newRank = gates[chekLevel[0]]->location.pos_h + 1;
 	vector<int> level;
 	for (int k = 0; k < chekLevel.size(); k++) {
 		for (int i = 0; i < gates.size(); i++) {
-			if (gates[i]->location.pos != -1)
-				continue;
+			if (gates[i]->location.pos_h != -1) continue;
 			for (int j = 0; j < gates[chekLevel[k]]->pinsIn.size(); j++) {
 				for (int n = 0; n < gates[i]->pinsOut.size(); n++) {
 					if (gates[chekLevel[k]]->pinsIn[j] == gates[i]->pinsOut[n]) {
+						// Элемент gates[i] стоит на входе у элемента gates[chekLevel[k]]
+						// Левая схема, начали с левого элемента
+						//*
+						for (int g = 0; g < gates[i]->pinsIn.size(); g++) {
+							for (int c = 0; c < gates[i]->pinsIn[g]->connection.size(); c++) {
+								if (gates[i] == gates[i]->pinsIn[g]->connection[c])	continue;
+								if (gates[i]->pinsIn[g]->connection[c]->location.pos_h < newRank)	continue;
+								if (gates[i]->pinsIn[g]->connection[c]->location.pos_h == newRank) {
+									for (int p = 0; p < gates[i]->pinsIn[g]->connection[c]->pinsIn.size(); p++) {
+										if (gates[i]->pinsIn[g] == gates[i]->pinsIn[g]->connection[c]->pinsIn[p])
+											goto N;
+									}
+									for (int l = 0; l < level.size(); l++)
+										if (gates[level[l]]->name == gates[i]->pinsIn[g]->connection[c]->name)
+											level.erase(level.begin() + l);
+									gates[i]->pinsIn[g]->connection[c]->location.pos_h = -1;
+									numOfMinusOnes = numOfMinusOnes + 1;
+								N:;
+								}
+							}
+						}
+						// Правая схема, начали со среднего элемента
+						for (int g = 0; g < gates[i]->pinsOut.size(); g++) {
+							for (int c = 0; c < gates[i]->pinsOut[g]->connection.size(); c++) {
+								if (gates[i] == gates[i]->pinsOut[g]->connection[c])	continue;
+								if (gates[i]->pinsOut[g]->connection[c]->location.pos_h == -1) goto M;
+								if (gates[i]->pinsOut[g]->connection[c]->location.pos_h < newRank)	continue;
+								if (gates[i]->pinsOut[g]->connection[c]->location.pos_h == newRank) {
+									for (int p = 0; p < gates[i]->pinsOut[g]->connection[c]->pinsIn.size(); p++) {
+										//if (gates[i]->pinsIn[p]->connection[c]->location.pos < newRank)	continue;
+										if (gates[i]->pinsOut[g]->connection[c]->pinsIn[p] == gates[i]->pinsOut[g])
+											goto M;
+									}
+									//gates[i]->pinsOut[g]->connection[c]->location.pos = -1;
+									//numOfMinusOnes = numOfMinusOnes + 1;
+								}
+							}
+						}
+						//*/
+
 						level.push_back(i);
-						gates[i]->location.pos = chekLevel.size();
+						gates[i]->location.pos_h = newRank;
+						numOfMinusOnes = numOfMinusOnes - 1;
 					}
+				M:;
 				}
 			}
 		}
 	}
 	return level;
 }
+
 
 vector<int> myWindow::FindOutElement(){
 	vector<int> outIndex;
@@ -424,7 +513,7 @@ vector<int> myWindow::FindOutElement(){
 				if (out == false)  break;
 			}
 			if (out == true) {
-				gates[i]->location.pos = 0;
+				gates[i]->location.pos_h = 0;
 				cout << "FindOut " << gates[i]->name << endl;
 				outIndex.push_back(i);
 			}
@@ -434,9 +523,7 @@ vector<int> myWindow::FindOutElement(){
 	return outIndex;
 }
 /*
-1. убрать схему с size
-2. добавить в net вектор подсоединенных элементов
-3. исходя из п.2 сделать нормально расположение
-4. написать тест
+1. возвращать из луа таблицу входов, научиться ее  принимать!
+2. допилить рисовалку с шрифтами
 
 */

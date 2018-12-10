@@ -1,0 +1,16 @@
+M0 n1_4 n1_2 vdd vdd P w=4.2e-007 l=1.8e-007 
+M1 n1_4 n1_2 n2_3 n2_3 N w=2.2e-007 l=1.8e-007 
+M2 n1_4 n3_2 vdd vdd P w=4.2e-007 l=1.8e-007 
+M3 n2_3 n3_2 gnd gnd N w=2.2e-007 l=1.8e-007 
+M4 n3_2 n6_2 vdd vdd P w=4.2e-007 l=1.8e-007 
+M5 n3_2 n6_2 n7_3 n7_3 N w=2.2e-007 l=1.8e-007 
+M6 n3_2 x1 vdd vdd P w=4.2e-007 l=1.8e-007 
+M7 n7_3 x1 gnd gnd N w=2.2e-007 l=1.8e-007 
+M8 n1_2 x2 vdd vdd P w=4.2e-007 l=1.8e-007 
+M9 n1_2 x2 n12_3 n12_3 N w=2.2e-007 l=1.8e-007 
+M10 n1_2 n6_2 vdd vdd P w=4.2e-007 l=1.8e-007 
+M11 n12_3 n6_2 gnd gnd N w=2.2e-007 l=1.8e-007 
+M12 n6_2 x2 vdd vdd P w=4.2e-007 l=1.8e-007 
+M13 n6_2 x2 n17_3 n17_3 N w=2.2e-007 l=1.8e-007 
+M14 n6_2 x1 vdd vdd P w=4.2e-007 l=1.8e-007 
+M15 n17_3 x1 gnd gnd N w=2.2e-007 l=1.8e-007 

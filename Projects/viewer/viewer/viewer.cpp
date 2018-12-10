@@ -14,8 +14,10 @@ myWindow::myWindow(QWidget *parent) : QMainWindow(parent)
 		initListElement();
 		initViewWidget();
 		initCodeWidget();
-
-
+		/*
+		Painter *pic = new Painter(this);
+		widView->addTab(pic, "transistor");
+		pic->RenderScheme();*/
 		//qDebug()<<"I'm sorry"<<endl;
 
 		
@@ -143,7 +145,7 @@ void myWindow::slotOpen()
 
 	QString filename = QFileDialog::getOpenFileName(this,
 		"Select",
-		"",
+		"netlists",
 		"All (*);; TXT (*.txt);; Netlist's (*.spy *.sp)");
 	qDebug() << QString(filename);
 	if (filename.isEmpty()) return;

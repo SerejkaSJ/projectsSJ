@@ -1,0 +1,8 @@
+M0 n1_4 X gnd gnd N w=2e-007 l=2e-007 
+M1 n1_4 X vdd vdd P w=4e-007 l=2e-007 
+M2 n4_4 n1_4 gnd gnd N w=2e-007 l=2e-007 
+M3 n4_4 n1_4 vdd vdd P w=4e-007 l=2e-007 
+M4 Y n4_4 vdd vdd P w=4.2e-007 l=1.8e-007 
+M5 Y n4_4 n8_3 n8_3 N w=2.2e-007 l=1.8e-007 
+M6 Y n1_4 vdd vdd P w=4.2e-007 l=1.8e-007 
+M7 n8_3 n1_4 gnd gnd N w=2.2e-007 l=1.8e-007 

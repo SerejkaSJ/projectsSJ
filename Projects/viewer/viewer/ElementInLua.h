@@ -22,13 +22,15 @@ struct  Location
 {
 	double x;
 	double y;
-	int pos = -1;
+	int pos_h = -1;
+	int pos_v = -1;
 };
 
-
+class Gate;
 class Net {
 public:
 	string name;
+	vector<Gate*> connection;
 };
 
 

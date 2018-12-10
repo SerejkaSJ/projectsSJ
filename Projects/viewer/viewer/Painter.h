@@ -31,6 +31,9 @@ public:
 	//void paintTransistorN(QPainter *paint, int x, int y);
 public slots:
 	void paintEvent(QPaintEvent *evt);
+	void paintNot(QPainter *paint,  int x, int y);
+	void paintTwoOutElements(QPainter *paint,  int x, int y, QString str);
+
 	
 };
 
