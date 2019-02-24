@@ -28,34 +28,7 @@ void Painter::init(){
 
 void Painter::paintEvent(QPaintEvent *evt) {
 	QPainter paint(this);
-	//paint = new QPainter(this);
-	int x_cord = 50; 
-	int y_cord = 50;
-	
-	//paint.drawRect(0, 0, 50, 50);
-	//paint.drawRect(390, 140, 420, 160);
-	//paintTransistorN(paint, x_cord, y_cord);
-	
-	int dx = 7, dy = 15;
-	QPolygonF tran;
-	QPolygonF sub;
-	/*
-	tran << QPoint(x_cord, y_cord) << QPoint(x_cord, y_cord + dy) << QPoint(x_cord - dx, y_cord + dy) <<
-		QPoint(x_cord - dx, y_cord + 2 * dy) << QPoint(x_cord, y_cord + 2 * dy) << QPoint(x_cord, y_cord + 3 * dy);//tran n
-	sub << QPoint(x_cord-dx, y_cord + 1.5 * dy) << QPoint(x_cord + dx, y_cord + 1.5 * dy) << QPoint(x_cord + dx, y_cord );
-	paint.drawPolyline(tran);
-	paint.drawPolyline(sub);
-	
-
-	paint.drawLine(x_cord, (y_cord + 3 * dy), x_cord + 2 * dx, (y_cord + 3 * dy));
-	y_cord = y_cord + 3 * dy;
-	sub << QPoint(x_cord - dx, y_cord + 1.5 * dy) << QPoint(x_cord + dx, y_cord + 1.5 * dy) << QPoint(x_cord + dx, y_cord + 3 * dy);
-	tran << QPoint(x_cord, y_cord) << QPoint(x_cord, y_cord + dy) << QPoint(x_cord - dx, y_cord + dy) <<
-		QPoint(x_cord - dx, y_cord + 2 * dy) << QPoint(x_cord, y_cord + 2 * dy) << QPoint(x_cord, y_cord + 3 * dy);//tran p
-	paint.drawPolyline(tran);
-	paint.drawPolyline(sub);*/
 	myWindow * pWindow = dynamic_cast <myWindow *> (mParent);
-	int side = pWindow->side;
 	if (rep==true) {
 		cout << pWindow->gates.size() << endl;
 		for (int i = 0; i < pWindow->gates.size(); i++) {
@@ -64,22 +37,18 @@ void Painter::paintEvent(QPaintEvent *evt) {
 			int y = pWindow->gates[i]->location.y;
 			cout << "X: " << x << "Y: " << y << endl;
 			if (pWindow->gates[i]->type == 2) {
-			
 				paintTwoOutElements(&paint, x, y,"&");
-			
-				paint.drawText(x, y, pWindow->gates[i]->name.c_str());
+				//paint.drawText(x, y, pWindow->gates[i]->name.c_str());
+				//paint.drawText(x, y, pWindow->gates[i]->location.w.c_str());
 			}
 			if (pWindow->gates[i]->type == 3)
 			{
-
 				paintTwoOutElements(&paint, x, y, "1");
 				paint.drawText(x, y, pWindow->gates[i]->name.c_str());
 			}
 			if (pWindow->gates[i]->type == 1)
 			{
-				QFont f = paint.font();
 				paintNot(&paint, x, y);
-				paint.setFont(f);
 				paint.drawText(x, y, pWindow->gates[i]->name.c_str());
 			}
 		}
@@ -90,6 +59,8 @@ void Painter::paintEvent(QPaintEvent *evt) {
 void Painter::paintTwoOutElements(QPainter *paint, int x, int y, QString str) {
 	int width = 30;
 	int height = 40;
+	QFont f = paint->font();
+	QPen p = paint->pen();
 	paint->setPen(QPen(Qt::black, 2, Qt::SolidLine));
 	paint->setFont(QFont("Times", 15));
 	paint->drawRect(x, y, width, height);
@@ -98,14 +69,16 @@ void Painter::paintTwoOutElements(QPainter *paint, int x, int y, QString str) {
 	paint->drawText(x + width * 0.25, y + height / 2, str);
 	paint->drawLine(x, y + (height *0.75), x - 10, y + (height *0.75));
 	paint->drawLine(x, y + (height *0.25), x - 10, y + (height *0.25));
-	//paint->setPen(QPen(Qt::black, 1, Qt::SolidLine));
-	//paint->setFont(QFont("Times", 15));
+	paint->setFont(f);
+	paint->setPen(p);
 }
 
 
 void Painter::paintNot(QPainter *paint,  int x, int y) {
 	int width = 30;
 	int height = 40;
+	QFont f = paint->font();
+	QPen p = paint->pen();
 	QPen pen(Qt::black, 2, Qt::SolidLine);
 	QFont font("Times", 15);
 	paint->setPen(pen);
@@ -115,8 +88,8 @@ void Painter::paintNot(QPainter *paint,  int x, int y) {
 	paint->drawLine(x + width + 11, y + (height / 2), x + width + 20, y + (height / 2));
 	paint->drawLine(x, y + (height / 2), x - 10, y + (height / 2));
 	paint->drawText(x+ width*0.25, y+height/2,"1");
-	//paint->setPen(Qt::NoPen);
-	//paint->setFont(QFont::AnyStyle);
+	paint->setFont(f);
+	paint->setPen(p);
 }
 	
 /*void Painter::paintTransistorN(QPainter *paint, int x, int y){

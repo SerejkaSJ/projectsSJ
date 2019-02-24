@@ -379,7 +379,7 @@ int myWindow::locationGate() {
 	int pos = -1;
 	vector<int> out = FindOutElement();
 	for (int i = 0; i < out.size(); i++) {
-		gates[out[i]]->location.pos_v = i;
+		gates[out[i]]->location.pos_v = i + 1;
 	}
 	levels.push_back(out);
 	numOfMinusOnes = numOfMinusOnes - out.size();
@@ -418,7 +418,36 @@ int myWindow::locationGate() {
 void myWindow::verticalLayout(vector<vector<int>>  levels) {
 	for (int i = 1; i < levels.size(); i++) {
 		for (int j = 0; j < levels[i].size(); j++) {
-		//	gates[levels[i][j]]->location
+			int countConnect = 0;
+			int summaW = 0;
+			for (int k = 0; k < gates[levels[i][j]]->pinsOut.size(); k++) {
+				for (int n = 0; n < levels[i - 1].size(); n++) {
+					for (int p = 0; p < gates[levels[i - 1][n]]->pinsIn.size(); p++) {
+						if (gates[levels[i][j]]->pinsOut[k]->name == gates[levels[i - 1][n]]->pinsIn[p]->name) {
+							countConnect = countConnect + 1;
+							summaW = summaW + gates[levels[i - 1][n]]->location.pos_v;
+						}
+					}
+				}
+			}
+			gates[levels[i][j]]->location.w = summaW / countConnect;
+		}
+		setVerticalRank(levels[i]);
+	}
+
+}
+void myWindow::setVerticalRank(vector<int>  level) {
+	vector<float> w_vec;
+	for (int j = 0; j < level.size(); j++) {
+		w_vec.push_back(gates[level[j]]->location.w);
+	}
+	sort(w_vec.begin(), w_vec.end());
+	for (int i = 0; i < w_vec.size(); i++) {
+		for (int j = 0; j < level.size(); j++) {
+			if (w_vec[i] == gates[level[j]]->location.w) {
+				gates[level[j]]->location.pos_v = i + 1;
+				break;
+			}
 		}
 	}
 

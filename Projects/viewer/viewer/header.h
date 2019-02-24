@@ -104,6 +104,7 @@ protected:
 	vector<int> FindNetsElement(vector<int>  chekLevel, int &numOfMinusOnes);
 	void scaleElements(vector<vector<int>>  levels);
 	void verticalLayout(vector<vector<int>>  levels);
+	void setVerticalRank(vector<int>  level);
 public slots:
 	void slotOpen();
 	void slotRender();

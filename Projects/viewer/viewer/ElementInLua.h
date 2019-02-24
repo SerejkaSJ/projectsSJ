@@ -23,7 +23,8 @@ struct  Location
 	double x;
 	double y;
 	int pos_h = -1;
-	int pos_v = -1;
+	int pos_v;
+	float w;
 };
 
 class Gate;
